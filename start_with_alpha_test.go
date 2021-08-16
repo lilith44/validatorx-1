@@ -3,7 +3,7 @@ package validatorx_test
 import (
 	`testing`
 
-	`github.com/Cyclone-Vox/validatorx`
+	`github.com/storezhang/validatorx`
 )
 
 func TestStartWithAlpha(t *testing.T) {

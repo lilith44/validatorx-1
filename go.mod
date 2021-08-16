@@ -1,4 +1,4 @@
-module github.com/Cyclone-Vox/validatorx
+module github.com/storezhang/validatorx
 
 go 1.16
 
