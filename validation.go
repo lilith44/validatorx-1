@@ -26,7 +26,7 @@ func initValidation(validate *validator.Validate) (err error) {
 	if err = validate.RegisterValidation("max_len_without_number_suffix", checkMaxStringLenWithoutNumberSuffix); nil != err {
 		return
 	}
-	if err = validate.RegisterValidation("check_Name", checkName); nil != err {
+	if err = validate.RegisterValidation("name", checkName); nil != err {
 		return
 	}
 
