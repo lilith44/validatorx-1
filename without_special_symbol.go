@@ -14,8 +14,12 @@ func WithoutSpecialSymbol(str string) (l int, b bool) {
 		return
 	}
 	for _, r := range []rune(str) {
-		i := int(r)
-		if i < 32 || (i > 126 && i < 256) {
+		// 判断中文字符的·
+		if 183 == r {
+			continue
+		}
+
+		if r < 32 || (r > 126 && r < 256) {
 			return
 		}
 	}
