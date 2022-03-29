@@ -34,5 +34,19 @@ func initTranslation(validate *validator.Validate, chinese ut.Translator) (err e
 		return
 	}
 
+	if err = validate.RegisterTranslation(
+		"chinese",
+		chinese,
+		func(ut ut.Translator) error {
+			return ut.Add("chinese", "只能输入中文字符", true)
+		},
+		func(ut ut.Translator, fe validator.FieldError) string {
+			t, _ := ut.T("chinese", fe.Field(), fe.Param())
+			return t
+		},
+	); nil != err {
+		return
+	}
+
 	return
 }
