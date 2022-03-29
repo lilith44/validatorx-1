@@ -26,6 +26,9 @@ func initValidation(validate *validator.Validate) (err error) {
 	if err = validate.RegisterValidation("max_len_without_number_suffix", checkMaxStringLenWithoutNumberSuffix); nil != err {
 		return
 	}
+	if err = validate.RegisterValidation("chinese", checkChinese); nil != err {
+		return
+	}
 
 	return
 }
