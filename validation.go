@@ -32,8 +32,9 @@ func initValidation(validate *validator.Validate) (err error) {
 	if err = validate.RegisterValidation("name", checkName); nil != err {
 		return
 	}
+	if err = validate.RegisterValidation("sortby", checkSortBy); nil != err {
+		return
+	}
 
 	return
 }
-
-
