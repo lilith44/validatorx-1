@@ -48,5 +48,19 @@ func initTranslation(validate *validator.Validate, chinese ut.Translator) (err e
 		return
 	}
 
+	if err = validate.RegisterTranslation(
+		"sortby",
+		chinese,
+		func(ut ut.Translator) error {
+			return ut.Add("sortby", "排序字段必须是[{1}]中的一个", true)
+		},
+		func(ut ut.Translator, fe validator.FieldError) string {
+			t, _ := ut.T("sortby", fe.Field(), fe.Param())
+			return t
+		},
+	); nil != err {
+		return
+	}
+
 	return
 }
