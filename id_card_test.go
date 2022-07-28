@@ -57,8 +57,8 @@ func TestIdCard(t *testing.T) {
 		test := Test{}
 		test.IdCard = `51080219940921413x`
 		err := New().Struct(test)
-		if err != nil {
-			t.Error(err)
+		if err == nil {
+			t.Error(`51080219940921413x should be invalid`)
 		}
 	},
 	)
