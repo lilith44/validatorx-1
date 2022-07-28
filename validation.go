@@ -1,7 +1,7 @@
 package validatorx
 
 import (
-	`github.com/go-playground/validator/v10`
+	"github.com/go-playground/validator/v10"
 )
 
 func initValidation(validate *validator.Validate) (err error) {
@@ -33,6 +33,9 @@ func initValidation(validate *validator.Validate) (err error) {
 		return
 	}
 	if err = validate.RegisterValidation("sortby", checkSortBy); nil != err {
+		return
+	}
+	if err = validate.RegisterValidation("id_card", checkIdCard); nil != err {
 		return
 	}
 
