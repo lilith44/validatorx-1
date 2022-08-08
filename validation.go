@@ -38,6 +38,9 @@ func initValidation(validate *validator.Validate) (err error) {
 	if err = validate.RegisterValidation("id_card", checkIdCard); nil != err {
 		return
 	}
+	if err = validate.RegisterValidation("id_card_15", checkIdCard15Len); nil != err {
+		return
+	}
 
 	return
 }

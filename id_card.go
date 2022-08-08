@@ -7,7 +7,6 @@ import (
 )
 
 const (
-	_15IdCardLen      = 15
 	_18IdCardLen      = 18
 	_15LenIdCardRegex = `^[1-9]\d{7}(?:0\d|10|11|12)(?:0[1-9]|[1-2][\d]|30|31)\d{3}$`
 	_18LenIdCardRegex = `^[1-9]\d{5}((((((19|20)\d{2})(0[13-9]|1[012])(0[1-9]|[12]\d|30))|(((19|20)\d{2})(0[13578]|1[02])31)|
@@ -16,38 +15,29 @@ const (
 					|((\d{2})02(0[1-9]|1\d|2[0-8]))|(([13579][26]|[2468][048]|0[048])0229))\d{2}))(\d|X|x)$`
 )
 
-// IdCard 身份证号码校验. 满足15位或18位身份证校验。18位身份证使用GB11643-1999标准做校验位验证。
+// IdCard 18位身份证号码校验. 校验了年月日合法性，以及最后一位是否合法
 func IdCard(str string) bool {
-	var (
-		match bool
-		err   error
-	)
-
-	switch len(str) {
-	case _15IdCardLen:
-		if match, err = regexp.Match(_15LenIdCardRegex, []byte(str)); nil != err {
-			panic(err)
-		}
-		return match
-	case _18IdCardLen:
-		if match, err = regexp.Match(_18LenIdCardRegex, []byte(str)); nil != err {
-			panic(err)
-		}
-		if !match {
-			return false
-		}
-
-		if match = checkLastNum(str); !match {
-			return false
-		}
-
-	default:
-		return false
-	}
-
-	return true
+	return regexp.MustCompile(_18LenIdCardRegex).MatchString(str)
 }
 
+// IdCard15Len 15位身份证号码校验，校验了年月日合法性.
+func IdCard15Len(str string) bool {
+	return regexp.MustCompile(_15LenIdCardRegex).MatchString(str)
+}
+
+// checkIdCard 判断身份证号码是否有效(仅15位)
+func checkIdCard15Len(fl validator.FieldLevel) bool {
+	valid := IdCard15Len(fl.Field().String())
+	return valid
+}
+
+// checkIdCard 判断身份证号码是否有效(仅18位)
+func checkIdCard(fl validator.FieldLevel) bool {
+	valid := IdCard(fl.Field().String())
+	return valid
+}
+
+// checkLastNum 判断18位身份证号码的最后一位是否合法
 func checkLastNum(idCard string) bool {
 	// 根据 2^(index-1) % 11 得出位置:权重 哈希表 index从右至左算
 	weightList := []int{7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1}
@@ -75,10 +65,4 @@ func checkLastNum(idCard string) bool {
 	}
 
 	return true
-}
-
-// checkIdCard 判断身份证号码是否有效d
-func checkIdCard(fl validator.FieldLevel) bool {
-	valid := IdCard(fl.Field().String())
-	return valid
 }
