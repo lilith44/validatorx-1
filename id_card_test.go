@@ -9,6 +9,10 @@ func TestIdCard(t *testing.T) {
 		IdCard string `validate:"id_card"`
 	}
 
+	type Test15 struct {
+		IdCard string `validate:"id_card_15"`
+	}
+
 	t.Run(`valid_18_len_id_card`, func(t *testing.T) {
 		test := Test{}
 		test.IdCard = `510802199409214133`
@@ -20,7 +24,7 @@ func TestIdCard(t *testing.T) {
 	)
 
 	t.Run(`valid_15len`, func(t *testing.T) {
-		test := Test{}
+		test := Test15{}
 		test.IdCard = `510802950901131`
 		err := New().Struct(test)
 		if err != nil {
