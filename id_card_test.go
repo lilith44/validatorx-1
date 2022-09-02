@@ -15,7 +15,7 @@ func TestIdCard(t *testing.T) {
 
 	t.Run(`valid_18_len_id_card`, func(t *testing.T) {
 		test := Test{}
-		test.IdCard = `510802199409214133`
+		test.IdCard = `110101194102071295`
 		err := New().Struct(test)
 		if err != nil {
 			t.Error(err)
