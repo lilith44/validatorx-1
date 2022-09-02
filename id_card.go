@@ -43,13 +43,19 @@ func checkLastNum(idCard string) bool {
 
 	var (
 		count int
+		data  int
 	)
-
 	for index, weight := range weightList {
 		count += int(idCard[index]-'0') * weight
 	}
 
-	if int(idCard[_18IdCardLen-1]-'0') != checkMap[count%11] {
+	if idCard[_18IdCardLen-1] == 'x' || idCard[_18IdCardLen-1] == 'X' {
+		data = 10
+	} else {
+		data = int(idCard[_18IdCardLen-1] - '0')
+	}
+
+	if data != checkMap[count%11] {
 		return false
 	}
 
