@@ -19,7 +19,8 @@ func checkName(fl validator.FieldLevel) bool {
 }
 
 func ChineseOrEnglishOrNumbers(name string) bool {
-	reg := regexp.MustCompile(`^[A-Za-z0-9\u4e00-\u9fa5]`)
+	regular := `^[A-Za-z0-9\u4e00-\u9fa5]`
+	reg := regexp.MustCompile(regular)
 
 	return reg.MatchString(name)
 }
