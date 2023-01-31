@@ -19,7 +19,7 @@ func checkName(fl validator.FieldLevel) bool {
 }
 
 func ChineseOrEnglishOrNumbers(name string) bool {
-	regular := `^[A-Za-z0-9\p{Han}]`
+	regular := `^[A-Za-z0-9\p{Han}]+$`
 	reg := regexp.MustCompile(regular)
 
 	return reg.MatchString(name)
