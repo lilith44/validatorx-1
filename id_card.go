@@ -17,9 +17,7 @@ const (
 
 // IdCard 18位身份证号码校验. 校验了年月日合法性，以及最后一位是否合法
 func IdCard(str string) bool {
-	b := regexp.MustCompile(_18LenIdCardRegex).MatchString(str)
-
-	return b && checkLastNum(str)
+	return regexp.MustCompile(_18LenIdCardRegex).MatchString(str) && checkLastNum(str)
 }
 
 // IdCard15Len 15位身份证号码校验，校验了年月日合法性.
