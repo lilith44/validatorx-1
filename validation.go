@@ -32,7 +32,7 @@ func initValidation(validate *validator.Validate) (err error) {
 	if err = validate.RegisterValidation("name", checkName); nil != err {
 		return
 	}
-	if err = validate.RegisterValidation("cn_en_number", chineseOrEnglishOrNumbers); nil != err {
+	if err = validate.RegisterValidation("cn_en_num_end_begin_no_space", chineseOrEnglishOrNumbers); nil != err {
 		return
 	}
 	if err = validate.RegisterValidation("sortby", checkSortBy); nil != err {

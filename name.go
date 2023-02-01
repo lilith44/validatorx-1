@@ -18,13 +18,13 @@ func checkName(fl validator.FieldLevel) bool {
 	return CheckName(fl.Field().String())
 }
 
-func ChineseOrEnglishOrNumbers(name string) bool {
-	regular := `^[A-Za-z0-9\p{Han}]+$`
+func ChineseOrEnglishOrNumbersEndBeginNoSpace(name string) bool {
+	regular := `^[^\s][A-Za-z0-9\p{Han}\s]{1,}[^\s]$`
 	reg := regexp.MustCompile(regular)
 
 	return reg.MatchString(name)
 }
 
 func chineseOrEnglishOrNumbers(fl validator.FieldLevel) bool {
-	return ChineseOrEnglishOrNumbers(fl.Field().String())
+	return ChineseOrEnglishOrNumbersEndBeginNoSpace(fl.Field().String())
 }
