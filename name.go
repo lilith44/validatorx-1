@@ -25,6 +25,6 @@ func ChineseOrEnglishOrNumbersOrSpace(name string) bool {
 	return reg.MatchString(name)
 }
 
-func chineseOrEnglishOrNumbers(fl validator.FieldLevel) bool {
+func chineseOrEnglishOrNumbersOrSpace(fl validator.FieldLevel) bool {
 	return ChineseOrEnglishOrNumbersOrSpace(fl.Field().String())
 }
