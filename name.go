@@ -19,7 +19,7 @@ func checkName(fl validator.FieldLevel) bool {
 }
 
 func ChineseOrEnglishOrNumbersEndBeginNoSpace(name string) bool {
-	regular := `^(?!\s)(?!.*\s$)[A-Za-z0-9\u4e00-\u9fa5\s]*$`
+	regular := `^(?!\s)(?!.*\s$)[A-Za-z0-9\p{Han}\s]*$`
 	reg := regexp.MustCompile(regular)
 
 	return reg.MatchString(name)
