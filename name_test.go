@@ -17,7 +17,7 @@ func Test_ChineseOrEnglishOrNumbersOrSpace(t *testing.T) {
 
 	t.Run(`valid_han_num_en`, func(t *testing.T) {
 		if !ChineseOrEnglishOrNumbersOrSpace(`撒大苏打123123efef`) {
-			t.Errorf(`{测试 空格数字123asasd}测试未通过`)
+			t.Errorf(`{撒大苏打123123efef}测试未通过`)
 		}
 	})
 
