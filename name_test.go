@@ -2,7 +2,7 @@ package validatorx
 
 import "testing"
 
-func Test_ChineseOrEnglishOrNumbersEndBeginNoSpace(t *testing.T) {
+func Test_ChineseOrEnglishOrNumbersOrSpace(t *testing.T) {
 	t.Run(`invalid_zh_space_num`, func(t *testing.T) {
 		if !ChineseOrEnglishOrNumbersOrSpace(`测试 空格数字123`) {
 			t.Errorf(`{测试 空格数字123}测试未通过`)
